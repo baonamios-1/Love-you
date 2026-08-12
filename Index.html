@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Profile - Tình Yêu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f0c20 0%, #1a102f 50%, #2a0826 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .profile-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 105, 180, 0.2);
+      border-radius: 24px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
+                  0 0 30px rgba(255, 0, 110, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,0,128,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Khung chứa trái tim xoay */
+    .heart-wrapper {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 30px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .heart-container {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      animation: rotateHeart 10s linear infinite;
+    }
+
+    /* Hình dáng trái tim */
+    .heart {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #ff007f, #ff4d6d);
+      top: 35px;
+      left: 30px;
+      transform: rotate(-45deg);
+      box-shadow: 0 0 25px #ff007f, 0 0 50px rgba(255, 0, 127, 0.6);
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: inherit;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -40px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 40px;
+      top: 0;
+    }
+
+    /* Hiệu ứng xoay tròn và phồng nhẹ */
+    @keyframes rotateHeart {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+      50% {
+        transform: rotate(180deg) scale(1.1);
+      }
+      100% {
+        transform: rotate(360deg) scale(1);
+      }
+    }
+
+    /* Avatar ở giữa trái tim (có thể thay bằng thẻ <img>) */
+    .avatar-inner {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      object-fit: cover;
+      z-index: 5;
+      box-shadow: 0 0 15px rgba(255, 77, 109, 0.8);
+      background: #1a102f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .profile-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      text-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+    }
+
+    .profile-title {
+      font-size: 0.95rem;
+      color: #ff85a1;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .bio {
+      font-size: 0.95rem;
+      color: #e0e0e0;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      padding: 0 10px;
+    }
+
+    .info-stats {
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px 0;
+      margin-bottom: 25px;
+    }
+
+    .stat-item h4 {
+      font-size: 1.1rem;
+      color: #ff4d6d;
+      margin-bottom: 4px;
+    }
+
+    .stat-item p {
+      font-size: 0.75rem;
+      color: #aaa;
+      text-transform: uppercase;
+    }
+
+    .action-btn {
+      display: inline-block;
+      width: 100%;
+      padding: 14px 0;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(45deg, #ff007f, #ff4d6d);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(255, 0, 127, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 0, 127, 0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-card">
+    <!-- Khung trái tim quay quanh Avatar -->
+    <div class="heart-wrapper">
+      <div class="heart-container">
+        <div class="heart"></div>
+      </div>
+      <!-- Ảnh đại diện / Icon ở tâm (Thay thế bằng <img src="link_anh.jpg"> nếu muốn) -->
+      <div class="avatar-inner">❤️</div>
+    </div>
+
+    <!-- Thông tin Profile -->
+    <h2 class="profile-name">Nguyễn Văn A</h2>
+    <p class="profile-title">Forever In Love</p>
+
+    <p class="bio">
+      "Cùng em đi qua những ngày mưa, để thấy yêu thương này là mãi mãi."
+    </p>
+
+    <!-- Thống kê tình yêu -->
+    <div class="info-stats">
+      <div class="stat-item">
+        <h4>365+</h4>
+        <p>Ngày yêu</p>
+      </div>
+      <div class="stat-item">
+        <h4>100%</h4>
+        <p>Chân thành</p>
+      </div>
+      <div class="stat-item">
+        <h4>∞</h4>
+        <p>Hạnh phúc</p>
+      </div>
+    </div>
+
+    <!-- Nút tương tác -->
+    <a href="#" class="action-btn">Gửi Lời Nhắn ❤️</a>
+  </div>
+
+</body>
+</html>
